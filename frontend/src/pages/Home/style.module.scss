@@ -1,0 +1,139 @@
+.section{
+    width: 100%;
+    height: 100vh;
+
+    .cardCabeçalho{
+        width: 100%;
+        height: 15rem;
+
+        background-color: var(--color-red)
+    }
+    .conteudo{
+        width: 80%;
+        height: 1rem;
+
+        margin: 0 auto;
+        margin-top: -13rem;
+
+        color: white;
+
+        .goRestaurant{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            
+            margin-bottom: 4rem;
+
+            .logo{
+                width: 18%;
+                img{
+                    width: 100%;
+                }
+            }
+            .buttonAdd{
+                display: flex;
+                align-items: center;
+
+                .addPrato{
+                    border: none;
+                    display: flex;
+                    padding: 0.6rem;
+                    font-size: 15px;
+                    font-weight: 500;
+                    align-items: center;
+                    border-radius: 5px 0px 0px 5px;
+
+                    color: var(--color-white);
+                    background-color: var(--color-darkgreen);
+
+                }
+                .iconAdd{
+                    padding: 0.4rem;
+                    font-size: 23px;
+                    border-radius: 0px 5px 5px 0px;
+
+                    color: var(--color-white);
+                    background-color: var(--color-green);
+                }
+            }
+        }
+        .pratos{
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+
+    
+            .cards{
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+
+                .imagem{
+                width: 90%;
+                height: 9rem;
+                margin-bottom: -0.5rem;
+                padding: 5% 1rem 0% 1rem;
+                border-radius: 5px 5px 0rem 0rem;
+                    
+                background-color: var(--color-orange);
+                }
+                
+                .textos{
+                    padding: 2rem 5%;
+                    background-color: var(--color-gray);
+                    
+                    h3{
+                        font-size: 20px;
+                        color: var(--color-black); 
+                    }
+                    
+                    span{
+                        font-size: 12px;
+                        
+                        color: var(--color-black);
+                    }
+
+                    .valor{
+                        font-size: 18px;
+                        margin-top: 1rem;                        
+                        color: var(--color-green);
+                    }
+                }
+                .buttons{
+                    display: flex;
+                    align-items: center;
+                    padding: 0.5rem 1rem;
+                    justify-content: space-between;
+                    border-radius: 0rem 0rem 5px 5px;
+
+                    color: var(--color-black);
+                    background-color: var(--color-darkgray);
+
+                    .icones{
+                        width: 10%;
+                        display: flex;
+                        align-items: center;
+
+                        .icone{
+                            margin-right: 1rem;
+
+                            font-size: 1rem;
+                            padding: 0.5rem;
+                            border-radius: 5px;
+
+                            color: var(--color-black);
+                            background-color: var(--color-white);
+                        }
+                    }
+
+                    .disponibilidade{
+                        font-size: 15px;
+                    }
+                }
+
+
+                }
+        }
+    }
+}

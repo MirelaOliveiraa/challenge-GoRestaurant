@@ -1,0 +1,18 @@
+{
+  "pratos": [
+    {
+      "id": 1,
+      "img": "",
+      "nome": "Ao Molho",
+      "preco": 20.9,
+      "descricao": "Macarrão ao molho branco, fughi e cheiro verde das montanhas."
+    },
+    {
+      "id": 2,
+      "img": "",
+      "nome": "Ao Molho",
+      "preco": 20.9,
+      "descricao": "Macarrão ao molho branco, fughi e cheiro verde das montanhas."
+    }
+  ]
+}
