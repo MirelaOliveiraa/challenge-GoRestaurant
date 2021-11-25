@@ -1,8 +1,6 @@
 import React, { useEffect, useState } from "react";
 import style from "./style.module.scss";
 
-import CardPratos from "../../components/CardPratos";
-import AoMolho from "../../assets/AoMolho.svg";
 import Logo from "../../assets/Logo.svg";
 import HomeServices from "./service";
 
@@ -42,15 +40,15 @@ const Home = () => {
           </div>
         </div>
 
-        <div className={style.pratos}>
-          <CardPratos>
-            {pratos.map((item) => (
-              <div className={style.cards}>
-                <img className={style.imagem} src={AoMolho} />
+        <div className={style.cardPratos}>
+          {pratos.map((item) => (
+            <div className={style.card}>
+              <img className={style.imagem} src={item.img} />
 
-                <div className={style.textos}>
-                  <h3>{item.nome}</h3>
-                  <span>{item.descricao}</span>
+              <div className={style.textos}>
+                <div className={style.info}>
+                  <h3 className={style.nomePrato}>{item.nome}</h3>
+                  <span className={style.descricaoPrato}>{item.descricao}</span>
                   <h3 className={style.valor}>
                     {new Intl.NumberFormat("pt-BR", {
                       style: "currency",
@@ -58,7 +56,9 @@ const Home = () => {
                     }).format(item.preco)}
                   </h3>
                 </div>
-                <div className={style.buttons}>
+              </div>
+              <div className={style.buttons}>
+                <div className={style.alinharButtons}>
                   <div className={style.icones}>
                     <EditIcon className={style.icone} />
                     <DeleteOutlineIcon
@@ -67,12 +67,21 @@ const Home = () => {
                     />
                   </div>
                   <div className={style.disponibilidade}>
-                    <span>Disponivel</span>
+                    <span className={style.spanStatus}>{item.status}</span>
+                    <button
+                      className={
+                        pratos.status === "Disponível"
+                          ? style.corDisponivel
+                          : style.corIndisponivel
+                      }
+                    >
+                      <button className={style.onclick}></button>
+                    </button>
                   </div>
                 </div>
               </div>
-            ))}
-          </CardPratos>
+            </div>
+          ))}
         </div>
       </div>
     </section>
