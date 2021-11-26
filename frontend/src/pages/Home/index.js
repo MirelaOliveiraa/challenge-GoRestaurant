@@ -1,15 +1,41 @@
-import React, { useEffect, useState } from "react";
 import style from "./style.module.scss";
+import "./modal.scss";
+import React, { useEffect, useState } from "react";
 
-import Logo from "../../assets/Logo.svg";
 import HomeServices from "./service";
+import Logo from "../../assets/Logo.svg";
 
+import Switch from "react-switch";
+import Modal from "react-modal";
 import EditIcon from "@material-ui/icons/Edit";
 import DeleteOutlineIcon from "@material-ui/icons/DeleteOutline";
 import AddBoxOutlinedIcon from "@material-ui/icons/AddBoxOutlined";
 
+const customStyles = {
+  content: {
+    top: "30%",
+    left: "50%",
+    right: "auto",
+    bottom: "auto",
+    marginRight: "-50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
+
 const Home = () => {
   const [pratos, setPratos] = useState([]);
+  const [modalIsOpen, setIsOpen] = useState(false);
+
+  function openModal() {
+    setIsOpen(true);
+  }
+  function afterOpenModal() {
+    // references are now sync'd and can be accessed.
+  }
+
+  function closeModal() {
+    setIsOpen(false);
+  }
 
   const listarPratos = () => {
     HomeServices.list().then((response) => {
@@ -20,6 +46,16 @@ const Home = () => {
   const apagar = async (id) => {
     await HomeServices.delete(id);
     listarPratos();
+  };
+
+  const handleChange = () => {
+    pratos.map((...prato) => {
+      if (prato.disponivel == true) {
+        console.log(prato.id);
+      } else {
+        console.log("nn");
+      }
+    });
   };
 
   useEffect(() => {
@@ -35,14 +71,16 @@ const Home = () => {
             <img src={Logo} />
           </div>
           <div className={style.buttonAdd}>
-            <button className={style.addPrato}>Novo Prato</button>
-            <AddBoxOutlinedIcon className={style.iconAdd} />
+            <button onClick={openModal} className={style.addPrato}>
+              Novo Prato
+            </button>
+            <AddBoxOutlinedIcon className={style.iconAdd} onClick={openModal} />
           </div>
         </div>
 
         <div className={style.cardPratos}>
           {pratos.map((item) => (
-            <div className={style.card}>
+            <div key={item.id} className={style.card}>
               <img className={style.imagem} src={item.img} />
 
               <div className={style.textos}>
@@ -62,21 +100,23 @@ const Home = () => {
                   <div className={style.icones}>
                     <EditIcon className={style.icone} />
                     <DeleteOutlineIcon
-                      onClick={apagar}
+                      onClick={() => apagar(item.id)}
                       className={style.icone}
                     />
                   </div>
                   <div className={style.disponibilidade}>
-                    <span className={style.spanStatus}>{item.status}</span>
-                    <button
-                      className={
-                        pratos.status === "Disponível"
-                          ? style.corDisponivel
-                          : style.corIndisponivel
-                      }
-                    >
-                      <button className={style.onclick}></button>
-                    </button>
+                    <span className={style.spanStatus}>
+                      {item.disponivel ? "Disponível" : "Indisponível"}
+                    </span>
+
+                    <Switch
+                      checked={item.disponivel}
+                      onChange={handleChange}
+                      uncheckedIcon={false}
+                      checkedIcon={false}
+                      onColor="#39B100"
+                      offColor="#C72828"
+                    />
                   </div>
                 </div>
               </div>
@@ -84,6 +124,35 @@ const Home = () => {
           ))}
         </div>
       </div>
+
+      <Modal
+        isOpen={modalIsOpen}
+        onAfterOpen={afterOpenModal}
+        onRequestClose={closeModal}
+        overlayClassName="Overlay"
+        style={customStyles}
+      >
+        <div className="modal">
+          <h2>Novo prato</h2>
+          <button onClick="buttonClose" onClick={closeModal}>
+            close
+          </button>
+          <form>
+            Img
+            <input className="formInput" />
+            Nome
+            <input className="formInput" />
+            Preço
+            <input className="formInput" />
+            Descrição
+            <input className="formInput" />
+            <button>tab navigation</button>
+            <button>stays</button>
+            <button>inside</button>
+            <button>the modal</button>
+          </form>
+        </div>
+      </Modal>
     </section>
   );
 };

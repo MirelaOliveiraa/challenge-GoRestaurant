@@ -8,5 +8,9 @@ class HomeServices {
   static delete(id) {
     return api.delete(`/pratos/${id}`);
   }
+
+  static update(id) {
+    return api.patch(`/pratos/${id}`);
+  }
 }
 export default HomeServices;

@@ -1,61 +1,56 @@
-// import React from "react";
-// import ReactDOM from "react-dom";
-// import Modal from "react-modal";
+import React, { useState } from "react";
 
-// const customStyles = {
-//   content: {
-//     top: "50%",
-//     left: "50%",
-//     right: "auto",
-//     bottom: "auto",
-//     marginRight: "-50%",
-//     transform: "translate(-50%, -50%)",
-//   },
-// };
+import Modal from "react-modal";
 
-// // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
-// Modal.setAppElement("#yourAppElement");
+const Modall = () => {
+  const customStyles = {
+    content: {
+      top: "30%",
+      left: "50%",
+      right: "auto",
+      bottom: "auto",
+      marginRight: "-50%",
+      transform: "translate(-50%, -50%)",
+    },
+  };
 
-// function App() {
-//   let subtitle;
-//   const [modalIsOpen, setIsOpen] = React.useState(false);
+  function closeModal() {
+    setIsOpen(false);
+  }
+  const [modalIsOpen, setIsOpen] = useState(false);
 
-//   function openModal() {
-//     setIsOpen(true);
-//   }
-
-//   function afterOpenModal() {
-//     // references are now sync'd and can be accessed.
-//     subtitle.style.color = "#f00";
-//   }
-
-//   function closeModal() {
-//     setIsOpen(false);
-//   }
-
-//   return (
-//     <div>
-//       <button onClick={openModal}>Open Modal</button>
-//       <Modal
-//         isOpen={modalIsOpen}
-//         onAfterOpen={afterOpenModal}
-//         onRequestClose={closeModal}
-//         style={customStyles}
-//         contentLabel="Example Modal"
-//       >
-//         <h2 ref={(_subtitle) => (subtitle = _subtitle)}>Hello</h2>
-//         <button onClick={closeModal}>close</button>
-//         <div>I am a modal</div>
-//         <form>
-//           <input />
-//           <button>tab navigation</button>
-//           <button>stays</button>
-//           <button>inside</button>
-//           <button>the modal</button>
-//         </form>
-//       </Modal>
-//     </div>
-//   );
-// }
-
-// ReactDOM.render(<App />, appElement);
+  return (
+    <section>
+      <div>
+        <Modal
+          isOpen={modalIsOpen}
+          onRequestClose={closeModal}
+          className="modal"
+          overlayClassName="Overlay"
+          style={customStyles}
+        >
+          <div>
+            <h2>Novo prato</h2>
+            <button onClick={closeModal}>close</button>
+            <div>I am a modal</div>
+            <form>
+              Img
+              <input className="formInput" />
+              Nome
+              <input className="formInput" />
+              Preço
+              <input className="formInput" />
+              Descrição
+              <input className="formInput" />
+              <button>tab navigation</button>
+              <button>stays</button>
+              <button>inside</button>
+              <button>the modal</button>
+            </form>
+          </div>
+        </Modal>
+      </div>
+    </section>
+  );
+};
+export default Modall;
