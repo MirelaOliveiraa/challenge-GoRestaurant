@@ -8,6 +8,8 @@
     --color-white: white;
     --color-red: #C72828;
     --color-gray: #F0F0F5;
+    --color-gray2: #B7B7CC;
+    --color-gray3: #6C6C80;
     --color-black: #3D3D4D;
     --color-green: #41C900; 
     --color-orange: #FFB84D;
@@ -15,6 +17,6 @@
     --color-darkgreen: #39B100;
 }
 
-body, button{
+body, button, input{
     font-family: 'Poppins', sans-serif;
 }

@@ -9,8 +9,8 @@ class HomeServices {
     return api.delete(`/pratos/${id}`);
   }
 
-  static update(id) {
-    return api.patch(`/pratos/${id}`);
+  static create(data) {
+    return api.post("/pratos", data);
   }
 }
 export default HomeServices;

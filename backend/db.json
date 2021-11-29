@@ -1,28 +1,28 @@
 {
   "pratos": [
     {
-      "id": 4,
-      "img": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png",
-      "nome": " Molho",
-      "preco": 40.9,
+      "img": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png",
+      "nome": "fffffffff",
+      "preco": "77",
       "descricao": "Macarrão ao molho branco, fughi e cheiro verde das montanhas.",
-      "disponivel": false
+      "disponivel": true,
+      "id": 5
     },
     {
-      "id": 5,
-      "img": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png",
-      "nome": "Ao Molho",
-      "preco": 40.0,
+      "img": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png",
+      "nome": "fffffffff",
+      "preco": "77",
       "descricao": "Macarrão ao molho branco, fughi e cheiro verde das montanhas.",
-      "disponivel": false
+      "disponivel": true,
+      "id": 6
     },
     {
-      "id": 6,
-      "img": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food1.png",
-      "nome": "Ao Molho",
-      "preco": 41.9,
-      "descricao": "Macarrão ao molho branco, fughi e cheiro verde das montanhas.",
-      "disponivel": true
+      "img": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png",
+      "nome": "luscas",
+      "preco": "01",
+      "descricao": "rijtr0p9tj re90tugfrejut e9wyr0pwoyuaf ewy8r0opewjhfry0e efhy0hf",
+      "disponivel": true,
+      "id": 7
     }
   ]
 }
