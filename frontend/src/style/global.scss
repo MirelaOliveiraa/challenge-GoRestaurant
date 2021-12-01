@@ -1,22 +1,45 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600&display=swap");
 
-*{
-    margin: 0;
-    padding: 0;
+* {
+  margin: 0;
+  padding: 0;
 }
-:root{
-    --color-white: white;
-    --color-red: #C72828;
-    --color-gray: #F0F0F5;
-    --color-gray2: #B7B7CC;
-    --color-gray3: #6C6C80;
-    --color-black: #3D3D4D;
-    --color-green: #41C900; 
-    --color-orange: #FFB84D;
-    --color-darkgray:#E4E4EB;
-    --color-darkgreen: #39B100;
+:root {
+  --color-white: white;
+  --color-red: #c72828;
+  --color-gray: #f0f0f5;
+  --color-gray2: #b7b7cc;
+  --color-gray3: #6c6c80;
+  --color-black: #3d3d4d;
+  --color-green: #41c900;
+  --color-orange: #ffb84d;
+  --color-darkgray: #e4e4eb;
+  --color-darkgreen: #39b100;
 }
 
-body, button, input{
-    font-family: 'Poppins', sans-serif;
+body,
+button,
+input {
+  font-family: "Poppins", sans-serif;
+}
+
+.react-modal-overlay {
+  background-color: rgba(0, 0, 0, 0.5);
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.react-modal-content {
+  max-width: 576px;
+  width: 100%;
+  background-color: var(--color-gray);
+  padding: 3rem 2.5rem;
+  position: relative;
+  border-radius: 0.25rem;
 }

@@ -12,5 +12,9 @@ class HomeServices {
   static create(data) {
     return api.post("/pratos", data);
   }
+
+  static update(data) {
+    return api.put(`/pratos/${data.id}`, data);
+  }
 }
 export default HomeServices;

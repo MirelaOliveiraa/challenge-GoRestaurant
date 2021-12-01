@@ -42,6 +42,27 @@
                 display: flex;
                 align-items: center;
                 justify-content: center;
+
+                .buttonNome{
+                    width: 6rem;
+                    height: 3rem;
+                    
+                    border: none;
+                    padding: 0.5rem;
+                    border-radius: 5px 0px 0px 5px;
+                    
+                    color: var(--color-white);
+                    background-color: var(--color-darkgreen);
+                }
+
+                .iconAdd{
+                    width: 3rem;
+                    padding: 0.8rem 0%;
+                    font-size: 22px;
+                    border-radius: 0px 5px 5px 0px;
+
+                    background-color: var(--color-green);
+                }
             }
 
             .buttonAdd:hover{
@@ -49,6 +70,7 @@
 
             }
         }
+
         .cardPratos{
             width: 100%;
             display: flex;
@@ -62,6 +84,7 @@
                 .imagem{
                     height: 12.5rem;
                     width: 100%;
+        
                     object-fit: cover;
                     margin-bottom: -0.5rem;
                     border-radius: 5px 5px 0rem 0rem;
@@ -110,9 +133,9 @@
 
                     .alinharButtons{
                         display: flex;
+                        padding: 0 2rem;
                         align-items: center;
                         justify-content: space-between;
-                        padding: 0 2rem;
 
                         .icones{
                             display: flex;
@@ -131,10 +154,10 @@
                         .disponibilidade{
                             width: 50%;
 
+                            gap: 0.4rem;
                             display: flex;
                             align-items: center;
                             justify-content: space-between;
-                            gap: 0.4rem;
 
                             .spanStatus{
                                 font-size: 14px;

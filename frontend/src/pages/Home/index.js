@@ -1,30 +1,20 @@
-import style from "./style.module.scss";
-import "./modal.scss";
 import React, { useEffect, useState } from "react";
+import style from "./style.module.scss";
+
+import "./modal.scss";
 
 import HomeServices from "./service";
-import Logo from "../../assets/Logo.svg";
-import Excluir from "../../assets/Excluir.svg";
-import Editar from "../../assets/Editar.svg";
-import ButtonAddPrato from "../../assets/buttonAddPrato.svg";
-import BotaoNovoPrato from "../../assets/buttonNovoPrato.svg";
-
-import Switch from "react-switch";
-import Modal from "react-modal";
-
 import { toast, Toaster } from "react-hot-toast";
-import CloseIcon from "@material-ui/icons/Close";
 
-const customStyles = {
-  content: {
-    top: "30%",
-    left: "50%",
-    right: "auto",
-    bottom: "auto",
-    marginRight: "-50%",
-    transform: "translate(-50%, -50%)",
-  },
-};
+import Modal from "react-modal";
+import Switch from "react-switch";
+
+import Logo from "../../assets/Logo.svg";
+import Editar from "../../assets/Editar.svg";
+import Excluir from "../../assets/Excluir.svg";
+
+import CloseIcon from "@material-ui/icons/Close";
+import { FiCheckSquare, FiPlusSquare } from "react-icons/fi";
 
 const Home = () => {
   const [img, setImg] = useState("");
@@ -33,7 +23,10 @@ const Home = () => {
   const [descricao, setDescricao] = useState("");
 
   const [pratos, setPratos] = useState([]);
+  const [pratoEditado, setPratoEditado] = useState([]);
+
   const [modalIsOpen, setIsOpen] = useState(false);
+  const [modalIsOpenEdit, setIsOpenEdit] = useState(false);
 
   function openModal() {
     setIsOpen(true);
@@ -41,6 +34,15 @@ const Home = () => {
 
   function closeModal() {
     setIsOpen(false);
+  }
+
+  function openModalEdit(item) {
+    setPratoEditado(item);
+    setIsOpenEdit(true);
+  }
+
+  function closeModalEdit() {
+    setIsOpenEdit(false);
   }
 
   const listarPratos = () => {
@@ -65,19 +67,37 @@ const Home = () => {
     closeModal();
   };
 
+  const editarPratos = async (item) => {
+    const payload = {
+      id: item.id,
+      img: item.img,
+      nome: item.nome,
+      preco: item.preco,
+      descricao: item.descricao,
+      disponivel: item.disponivel,
+    };
+    await HomeServices.update(payload);
+    toast.success("Prato editado!");
+
+    listarPratos();
+    closeModalEdit();
+  };
+
   const apagar = async (id) => {
     await HomeServices.delete(id);
     listarPratos();
   };
 
-  const handleChange = () => {
-    pratos.map((...prato) => {
-      if (prato.disponivel == true) {
-        console.log(prato.id);
+  const handleChange = (pratoId, checked) => {
+    const pratosAtualizados = pratos.map((item) => {
+      if (item.id === pratoId) {
+        return { ...item, disponivel: checked };
       } else {
-        console.log("nn");
+        return item;
       }
     });
+
+    setPratos(pratosAtualizados);
   };
 
   useEffect(() => {
@@ -92,11 +112,11 @@ const Home = () => {
           <div className={style.logo}>
             <img src={Logo} />
           </div>
-          <img
-            src={BotaoNovoPrato}
-            onClick={openModal}
-            className={style.buttonAdd}
-          />
+
+          <div onClick={openModal} className={style.buttonAdd}>
+            <button className={style.buttonNome}>Novo Prato</button>
+            <FiPlusSquare className={style.iconAdd} />
+          </div>
         </div>
 
         <div className={style.cardPratos}>
@@ -121,7 +141,11 @@ const Home = () => {
                 <div className={style.buttons}>
                   <div className={style.alinharButtons}>
                     <div className={style.icones}>
-                      <img src={Editar} className={style.icone} />
+                      <img
+                        src={Editar}
+                        onClick={() => openModalEdit(item)}
+                        className={style.icone}
+                      />
                       <img
                         src={Excluir}
                         className={style.icone}
@@ -132,10 +156,9 @@ const Home = () => {
                       <span className={style.spanStatus}>
                         {item.disponivel ? "Disponível" : "Indisponível"}
                       </span>
-
                       <Switch
                         checked={item.disponivel}
-                        onChange={handleChange}
+                        onChange={(checked) => handleChange(item.id, checked)}
                         uncheckedIcon={false}
                         checkedIcon={false}
                         onColor="#39B100"
@@ -153,8 +176,8 @@ const Home = () => {
       <Modal
         isOpen={modalIsOpen}
         onRequestClose={closeModal}
-        overlayClassName="Overlay"
-        style={customStyles}
+        overlayClassName="react-modal-overlay"
+        className="react-modal-content"
       >
         <div className="modal">
           <div className="cabecalhoModal">
@@ -196,16 +219,96 @@ const Home = () => {
               className="formInput"
               type="text"
             />
-
-            <img
-              src={ButtonAddPrato}
-              className="imgAddPratos"
-              onClick={adicionarPratos}
-            />
+            <div onClick={adicionarPratos} className="buttonAddPratos">
+              <button className="buttonNome">Novo Prato</button>
+              <FiCheckSquare className="iconAdd" />
+            </div>
           </form>
         </div>
       </Modal>
       <Toaster position="top-right" reverseOrder={false} />
+
+      <Modal
+        isOpen={modalIsOpenEdit}
+        onRequestClose={closeModalEdit}
+        overlayClassName="react-modal-overlay"
+        className="react-modal-content"
+      >
+        <div className="modal">
+          <div className="cabecalhoModal">
+            <h2>Editar prato</h2>
+            <CloseIcon className="iconClose" onClick={closeModalEdit} />
+          </div>
+          <form className="formulario">
+            <span className="temaInput">URL da imagem</span>
+            <input
+              placeholder="Cole o link aqui"
+              className="formInput"
+              type="URL"
+              value={pratoEditado?.img}
+              onChange={(event) =>
+                setPratoEditado({
+                  ...pratoEditado,
+                  img: event.target.value,
+                })
+              }
+            />
+            <div className="formInputs">
+              <div className="inputNome">
+                <span className="temaInput">Nome do prato</span>
+                <input
+                  value={pratoEditado?.nome}
+                  onChange={(event) =>
+                    setPratoEditado({
+                      ...pratoEditado,
+                      nome: event.target.value,
+                    })
+                  }
+                  placeholder="Ex: Moda Italiana"
+                  className="formInput"
+                  type="text"
+                />
+              </div>
+              <div className="inputPreco">
+                <span className="temaInput">Preço</span>
+                <input
+                  value={pratoEditado?.preco}
+                  onChange={(event) =>
+                    setPratoEditado({
+                      ...pratoEditado,
+                      preco: event.target.value,
+                    })
+                  }
+                  className="formInput"
+                  type="number"
+                  min="1"
+                  step="any"
+                />
+              </div>
+            </div>
+            <span className="temaInput">Descrição do prato</span>
+            <input
+              value={pratoEditado?.descricao}
+              onChange={(event) =>
+                setPratoEditado({
+                  ...pratoEditado,
+                  descricao: event.target.value,
+                })
+              }
+              className="formInput"
+              type="text"
+            />
+
+            <div
+              onClick={() => editarPratos(pratoEditado)}
+              className="buttonAddPratos"
+            >
+              <button className="buttonNome">Editar prato</button>
+              <FiCheckSquare className="iconAdd" />
+            </div>
+          </form>
+        </div>
+      </Modal>
     </section>
   );
 };
