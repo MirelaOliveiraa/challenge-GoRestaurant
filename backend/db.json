@@ -5,22 +5,24 @@
       "img": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png",
       "nome": "fffffffff",
       "preco": "77",
-      "descricao": "Macarrão ao molho branco, fughi e cheiro verde das montanhas."
+      "descricao": "Macarrão ao molho branco, fughi e cheiro verde das montanhas.",
+      "disponivel": false
     },
     {
-      "id": 7,
-      "img": "https://avatars.githubusercontent.com/u/73675902?v=4",
-      "nome": "lucaslpbs",
-      "preco": "-100",
-      "descricao": "Sou desenvolvedor Back-End Junior, estou tentando evoluir cada vez mas e tentando alcançar o topo do conhecimento em C#"
-    },
-    {
+      "id": 8,
       "img": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png",
       "nome": "clodoaldo",
-      "preco": "00",
+      "preco": "-1000",
       "descricao": "me odeia ",
-      "disponivel": true,
-      "id": 8
+      "disponivel": false
+    },
+    {
+      "id": 9,
+      "img": "https://avatars.githubusercontent.com/u/73675902?v=4",
+      "nome": "lalla",
+      "preco": "-100",
+      "descricao": "ddd",
+      "disponivel": true
     }
   ]
 }

@@ -76,12 +76,17 @@
             display: flex;
             flex-wrap: wrap;
 
+            .cardIndisponivel{
+                opacity: 1;
+                background-color: red;
+            }
+
             .card{
                 width: 30%;     
 
                 margin: 1rem 1.1rem;           
 
-                .imagem{
+                .imagem, .imagemIndisponivel{
                     height: 12.5rem;
                     width: 100%;
         
@@ -89,6 +94,10 @@
                     margin-bottom: -0.5rem;
                     border-radius: 5px 5px 0rem 0rem;
                 }
+                .imagemIndisponivel{
+                    opacity: 0.8;
+                }
+
                 
                 .textos{
                     width: 100%;
@@ -160,7 +169,7 @@
                             justify-content: space-between;
 
                             .spanStatus{
-                                font-size: 14px;
+                                font-size: 16px;
                             }
                         }       
                     }

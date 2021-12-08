@@ -63,8 +63,8 @@ const Home = () => {
     await HomeServices.create(payload);
     toast.success("Novo item inserido!");
 
-    listarPratos();
     closeModal();
+    listarPratos();
   };
 
   const editarPratos = async (item) => {
@@ -123,7 +123,14 @@ const Home = () => {
           {pratos.map((item) => (
             <div key={item.id} className={style.card}>
               <div>
-                <img className={style.imagem} src={item.img} />
+                <img
+                  className={
+                    item.disponivel == true
+                      ? style.imagem
+                      : style.imagemIndisponivel
+                  }
+                  src={item.img}
+                />
                 <div className={style.textos}>
                   <div className={style.info}>
                     <h3 className={style.nomePrato}>{item.nome}</h3>
