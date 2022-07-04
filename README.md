@@ -1,7 +1,7 @@
 # challenge-GoRestaurant
 
 #### Sobre: 
-Challenge desenvolvido usando ReactJs! (em desenvolvimento)
+Challenge desenvolvido usando ReactJs!
 
 ## 
 
