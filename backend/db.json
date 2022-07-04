@@ -14,14 +14,6 @@
       "preco": "100",
       "descricao": "Camarão alho e óleo",
       "disponivel": true,
-      "id": 9
-    },
-    {
-      "img": "https://storage.googleapis.com/golden-wind/bootcamp-gostack/desafio-food/food2.png",
-      "nome": "Camarão",
-      "preco": "100",
-      "descricao": "Camarão alho e óleo",
-      "disponivel": true,
       "id": 10
     }
   ]
